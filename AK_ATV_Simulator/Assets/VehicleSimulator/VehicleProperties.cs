@@ -115,7 +115,7 @@ public class VehicleProperties : MonoBehaviour
         return false;
     }
 
-    Rigidbody get_rg() {
+    Rigidbody get_rb() {
         return rb;
     }
 
