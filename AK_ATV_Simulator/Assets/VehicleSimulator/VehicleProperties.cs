@@ -115,6 +115,10 @@ public class VehicleProperties : MonoBehaviour
         return false;
     }
 
+    public Rigidbody get_rb() {
+        return rb;
+    }
+
     // Average across the nforce_copies of idx in this array
     /*
     T force_average<T>(T[] force_arr,int idx) {
@@ -262,13 +266,5 @@ public class VehicleProperties : MonoBehaviour
         vehicle_position = rb.transform.localPosition;
         driver_last_position = driver.transform.position;
         driver_last_velocity = driver_velocity; // making our own velocity since the rigidbody isn't updating with respect to the physics engine
-
-        // Reset (after flip)
-        if (Input.GetKey("r")) {
-            transform.position=flat_Y(transform.position);
-            transform.LookAt(flat_Y(transform.position+transform.forward*10.0f));
-            rb.velocity=Vector3.ClampMagnitude(rb.velocity,5.0f); // limit linear velocity (don't zero it, for ice)
-            rb.angularVelocity=new Vector3(0.0f,0.0f,0.0f);
-        }
     }
 }
