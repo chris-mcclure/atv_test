@@ -61,6 +61,7 @@
      <Compile Include="Assets\Scripts\TimeBody.cs" />
      <Compile Include="Assets\Scripts\TireSimulator.cs" />
      <Compile Include="Assets\Scripts\VehicleProperties.cs" />
+     <Compile Include="Assets\Scripts\WaterCollision.cs" />
      <None Include="Assets\Rocks and Boulders 2\Shaders\shader info.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />

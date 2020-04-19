@@ -85,7 +85,6 @@ public class VehicleProperties : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.mass=mass_engine;
         mass_vehicle=mass_engine+4.0f*mass_tire;
-
         driver_RB = driver.GetComponent<Rigidbody>();
         // StartCoroutine(WaitForTime(5));
 

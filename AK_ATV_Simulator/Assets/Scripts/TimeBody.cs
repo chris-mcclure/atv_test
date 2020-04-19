@@ -6,7 +6,7 @@ public class TimeBody : MonoBehaviour
 {
     bool isRewinding = false;
     Vector3 veloBeforeRewind;
-    public float RewindTime = 5f;
+    public float rewindTime = 5.0f;
     List<PointInTime> pointsInTime;
     Rigidbody rb;
     // Start is called before the first frame update
@@ -19,10 +19,12 @@ public class TimeBody : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.B))
+        if(Input.GetKeyDown(KeyCode.B)){
             StartRewind();
-        if(Input.GetKeyUp(KeyCode.B))
+        }
+        if(Input.GetKeyUp(KeyCode.B)){
             StopRewind();
+        }
     }
 
     void FixedUpdate(){
@@ -45,7 +47,7 @@ public class TimeBody : MonoBehaviour
         }
     }
     void Track(){
-        if(pointsInTime.Count > Mathf.Round(RewindTime / Time.fixedDeltaTime))
+        if(pointsInTime.Count > Mathf.Round(rewindTime / Time.fixedDeltaTime))
             pointsInTime.RemoveAt(pointsInTime.Count - 1);
         pointsInTime.Insert(0, new PointInTime(transform.position, transform.rotation, rb.velocity));
     }
