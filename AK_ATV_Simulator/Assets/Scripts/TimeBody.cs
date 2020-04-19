@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class TimeBody : MonoBehaviour
 {
-    bool isRecording = false;
-    public float recordTime = 5f;
+    bool isRewinding = false;
+    Vector3 veloBeforeRewind;
+    public float RewindTime = 5f;
     List<PointInTime> pointsInTime;
     Rigidbody rb;
     // Start is called before the first frame update
@@ -19,19 +20,19 @@ public class TimeBody : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.B))
-            StartRecord();
+            StartRewind();
         if(Input.GetKeyUp(KeyCode.B))
-            StopRecord();
+            StopRewind();
     }
 
     void FixedUpdate(){
-        if(isRecording)
-            Record();
+        if(isRewinding)
+            Rewind();
         else
             Track();
     }
 
-    void Record(){
+    void Rewind(){
         if(pointsInTime.Count > 0){
             PointInTime pointInTime = pointsInTime[0];
             transform.position = pointInTime.position;
@@ -40,22 +41,24 @@ public class TimeBody : MonoBehaviour
             pointsInTime.RemoveAt(0);
         }
         else{
-            StopRecord();
+            StopRewind();
         }
     }
     void Track(){
-        if(pointsInTime.Count > Mathf.Round(recordTime / Time.fixedDeltaTime))
+        if(pointsInTime.Count > Mathf.Round(RewindTime / Time.fixedDeltaTime))
             pointsInTime.RemoveAt(pointsInTime.Count - 1);
         pointsInTime.Insert(0, new PointInTime(transform.position, transform.rotation, rb.velocity));
     }
 
-    public void StartRecord(){
-        isRecording = true;
+    public void StartRewind(){
+        veloBeforeRewind = rb.velocity;
+        isRewinding = true;
         rb.isKinematic = true;
     }
 
-    public void StopRecord(){
-        isRecording = false;
+    public void StopRewind(){
+        rb.velocity = veloBeforeRewind;
+        isRewinding = false;
         rb.isKinematic = false;
     }
 }

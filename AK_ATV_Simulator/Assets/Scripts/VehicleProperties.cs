@@ -87,7 +87,7 @@ public class VehicleProperties : MonoBehaviour
         mass_vehicle=mass_engine+4.0f*mass_tire;
 
         driver_RB = driver.GetComponent<Rigidbody>();
-        StartCoroutine(WaitForTime(5));
+        // StartCoroutine(WaitForTime(5));
 
         // GL rendering (not yet functional)
         Material mat = force_material;
@@ -234,7 +234,7 @@ public class VehicleProperties : MonoBehaviour
         }
 
         if (is_flipped()) {
-            BroadcastMessage("StartRecord");
+            BroadcastMessage("StartRewind");
         }
         
         // Update vehicle center of mass physics
